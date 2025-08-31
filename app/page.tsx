@@ -46,7 +46,7 @@ export default function HomePage() {
             <span className="text-xl font-bold text-foreground">Gotcha</span>
           </div>
           
-          <div className="flex items-center space-x-10">
+          <div className="flex items-center space-x-4 sm:space-x-10">
             <a 
               href="https://github.com/thomasfevre/gotcha4" 
               target="_blank" 
