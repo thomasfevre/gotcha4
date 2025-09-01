@@ -111,7 +111,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Profile Card */}
-        <NeuCard className="mb-10">
+        <NeuCard className="mb-10 p-4 sm:p-6 lg:p-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
               <Avatar className="h-16 w-16 neu-raised">
@@ -130,7 +130,7 @@ export default function ProfilePage() {
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold text-foreground">
                   <span className="block sm:hidden">
-                    {userProfile?.username?.slice(0, 8)}
+                    {userProfile?.username?.slice(0, 9)}
                     {userProfile?.username && userProfile.username.length > 10 ? "…" : ""}
                   </span>
                   <span className="hidden sm:block">

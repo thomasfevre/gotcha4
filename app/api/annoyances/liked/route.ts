@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase'
 import { verifyPrivyToken } from '@/lib/auth'
+import { Annoyance } from '@/lib/schemas'
 
 export async function GET(request: NextRequest) {
   try {
@@ -57,14 +58,16 @@ export async function GET(request: NextRequest) {
     const transformedAnnoyances = (likedAnnoyances || [])
       .filter(like => like.annoyance) // Filter out any null annoyances
       .map(like => {
-        const annoyance = like.annoyance as any
+          const annoyance = like.annoyance as any;
+          const profile = annoyance.profiles[0] as { username: string; profile_image_url: string | null } | undefined;
         return {
-          ...annoyance,
-          user: annoyance.profiles,
-          categories: annoyance.categories?.map((cat: any) => cat.category) || [],
-          like_count: annoyance.like_count?.[0]?.count || 0,
-          comment_count: annoyance.comment_count?.[0]?.count || 0,
-          is_liked: true, // All these posts are liked by the user
+            ...annoyance,
+            username: profile?.username || "Anonymous",
+            profile_image_url: profile?.profile_image_url || null,
+            categories: annoyance.categories?.map((cat: any) => cat.category) || [],
+            like_count: annoyance.like_count?.[0]?.count || 0,
+            comment_count: annoyance.comment_count?.[0]?.count || 0,
+            is_liked: true, // All these posts are liked by the user
         }
       })
 

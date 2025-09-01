@@ -4,6 +4,7 @@ import { Check, X } from "lucide-react"
 import { NeuButton } from "@/components/ui/neu-button"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { NeuCard } from "./ui/neu-card"
 
 interface Category {
   id: number
@@ -42,7 +43,10 @@ export function CategorySelector({
   }
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <NeuCard 
+          className="w-full max-w-md max-h-[90vh] overflow-y-auto p-4"
+          onClick={(e) => e.stopPropagation()}
+        >
       {/* Selected Categories */}
       {selectedCategories.length > 0 && (
         <div className="flex flex-wrap gap-2 items-center">
@@ -101,6 +105,6 @@ export function CategorySelector({
           })}
         </div>
       </div>
-    </div>
+    </NeuCard>
   )
 }

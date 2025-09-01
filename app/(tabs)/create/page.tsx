@@ -282,7 +282,7 @@ export default function CreatePage() {
         </p>
       </div>
 
-      <NeuCard>
+      <NeuCard className="p-4 sm:p-6 lg:p-8">
         <form className="space-y-6">
           {/* Title */}
           <div className="space-y-2">
@@ -402,8 +402,8 @@ export default function CreatePage() {
             }`}>
               
               <div className="grid grid-cols-1 gap-3">
-                <div className="flex items-center justify-start">
-                  <Label htmlFor="linkType" className="text-xs px-5">Type :</Label>
+                <div className="flex items-center justify-center">
+                  {/* <Label htmlFor="linkType" className="text-xs px-5">Type :</Label> */}
                   <Select
                     value={newLink.type}
                     onValueChange={(value) => setNewLink((prev) => ({ ...prev, type: value }))}

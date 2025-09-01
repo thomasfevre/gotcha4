@@ -90,7 +90,6 @@ export function useAuth() {
   // Helper function to get the primary connection method
   const getConnectionMethod = () => {
     if (!user) return null
-    console.log(user)
     // Check for social logins first
     if (user.google) return 'Google'
     if (user.twitter) return 'Twitter'

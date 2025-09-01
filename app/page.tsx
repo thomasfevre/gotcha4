@@ -33,7 +33,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-primary/10">  
+    <div className="min-h-screen relative overflow-hidden bg-primary/10 dark:bg-black/50">  
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
@@ -166,7 +166,7 @@ export default function HomePage() {
                       href="https://linkedin.com/in/thomas-fevre-6853b51a1" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 hover:text-foreground transition-colors"
+                      className="flex items-center space-x-2 hover:text-foreground transition-colors w-[105px]"
                     >
                       <span className="hidden xs:inline">Connect on LinkedIn</span>
                       <span className="xs:hidden">LinkedIn</span>
@@ -174,10 +174,10 @@ export default function HomePage() {
                     
                   </a>
                   <a 
-                                href="https://github.com/thomasfevre" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
+                    href="https://github.com/thomasfevre" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors w-[80px]"
                   >
                     <span>GitHub</span>
                     <Github className="h-5 w-5" />

@@ -6,7 +6,7 @@ function NeuCard({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "neu-raised bg-gradient-to-br from-neutral-100 to-neutral-300 text-card-foreground rounded-3xl p-8 shadow-xl border-2 border-neutral-300 transition-all duration-200 backdrop-blur-sm shadow-neutral-400/40 dark:from-neutral-800 dark:to-neutral-900 dark:border-neutral-600 dark:text-neutral-100 dark:shadow-neutral-900/50",
+        "neu-raised bg-gradient-to-br from-neutral-100 to-neutral-300 text-card-foreground rounded-3xl p-8 shadow-xl border border-neutral-300 transition-all duration-200 backdrop-blur-sm shadow-neutral-400/40 dark:from-neutral-800 dark:to-neutral-900 dark:border-neutral-600 dark:text-neutral-100 dark:shadow-neutral-900/50",
         className
       )}
       {...props}

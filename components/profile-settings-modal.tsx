@@ -24,7 +24,7 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
   const { getAccessToken } = usePrivy()
   const { toast } = useToast()
   const queryClient = useQueryClient()
-  
+
   const [username, setUsername] = useState("")
   const [bio, setBio] = useState("")
   const [profileImageUrl, setProfileImageUrl] = useState<string>("")
@@ -194,7 +194,7 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
     }
   }
 
-  const noChangesMade = 
+  const noChangesMade =
     username === userProfile?.username &&
     bio === userProfile?.bio &&
     notificationEmail === userProfile?.notification_email &&
@@ -202,46 +202,46 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md rounded-3xl" showCloseButton={false}>
+      <DialogContent className="max-w-md rounded-3xl p-4 sm:p-6 lg:p-8" showCloseButton={false}>
         <DialogHeader>
           <DialogTitle>Profile Settings</DialogTitle>
           <DialogDescription>
             Update your profile information and settings.
           </DialogDescription>
           <NeuButton
-              variant="flat"
-              size="icon"
-              onClick={onClose}
-              className="absolute top-4 right-5 h-8 w-8"
-            >
-              <X className="h-3 w-3" />
+            variant="flat"
+            size="icon"
+            onClick={onClose}
+            className="absolute top-4 right-5 h-8 w-8"
+          >
+            <X className="h-3 w-3" />
           </NeuButton>
         </DialogHeader>
 
         <Tabs defaultValue="account" className="w-full" onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-3 neu-inset p-1 h-auto">
+          <TabsList className="grid w-full grid-cols-3 neu-inset p-1 h-auto">
             <TabsTrigger
               value="account"
-              className="neu-flat-sm data-[state=active]:neu-pressed-sm gap-2 cursor-pointer  hover:bg-neutral-200 dark:hover:bg-neutral-700"
+              className="gap-2 cursor-pointer  hover:bg-neutral-200 dark:hover:bg-neutral-700"
             >
               <User className="h-4 w-4" />
               Account
             </TabsTrigger>
             <TabsTrigger
               value="notifications"
-              className="neu-flat-sm data-[state=active]:neu-pressed-sm gap-2 cursor-pointer  hover:bg-neutral-200 dark:hover:bg-neutral-700"
+              className=" gap-2 cursor-pointer  hover:bg-neutral-200 dark:hover:bg-neutral-700"
             >
               <Bell className="h-4 w-4" />
               Notifications
             </TabsTrigger>
             <TabsTrigger
               value="danger"
-              className="neu-flat-sm data-[state=active]:neu-pressed-sm gap-2 text-destructive/80 data-[state=active]:text-destructive cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700"
+              className=" gap-2 text-destructive/80 data-[state=active]:text-destructive cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-700"
             >
               <ShieldAlert className="h-4 w-4" />
               Danger Zone
             </TabsTrigger>
-            </TabsList>
+          </TabsList>
 
           <TabsContent value="account" className="py-4 space-y-6">
             {/* Profile Picture */}
@@ -291,14 +291,14 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
           </TabsContent>
 
           <TabsContent value="notifications" className="py-4 space-y-6">
-            <div className="space-y-2">
+            <div className="space-y-6 my-2">
               <Label htmlFor="notification-email" className="px-5">Notification Email</Label>
               <NeuInput id="notification-email" type="email" value={notificationEmail} onChange={(e) => setNotificationEmail(e.target.value)} placeholder="Enter email for notifications" />
               <p className="text-xs text-muted-foreground px-5">
                 We'll email you when someone comments on your posts.
               </p>
             </div>
-            <div className="flex items-center justify-between px-5">
+            <div className="flex items-center justify-between p-5">
               <div className="space-y-1">
                 <Label htmlFor="notifications-enabled">Enable Notifications</Label>
                 <p className="text-xs text-muted-foreground">Receive email notifications for new comments</p>
@@ -311,21 +311,23 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
           </TabsContent>
 
           <TabsContent value="danger" className="py-4 space-y-4">
-            <div className="space-y-3 text-sm text-muted-foreground">
+            <div className="space-y-6 mt-2 mb-6 text-sm text-muted-foreground">
               <p>Deleting your account will:</p>
-              <ul className="list-disc list-inside space-y-1 ml-2">
+              <ul className="list-disc list-inside space-y-2 ml-2">
                 <li>Permanently remove your profile and personal information</li>
                 <li>Remove all your likes and preferences</li>
                 <li>Keep your posts and comments anonymous</li>
                 <li>This action cannot be undone</li>
               </ul>
             </div>
-            
+
             {!showDeleteConfirm ? (
+              <div className="justify-center flex flex-col items-center"> 
               <NeuButton variant="destructive" size="sm" onClick={() => setShowDeleteConfirm(true)}>
                 <Trash2 className="h-4 w-4 mr-2" />
                 Delete Account
-              </NeuButton>
+                </NeuButton>
+              </div>
             ) : (
               <div className="space-y-3">
                 <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
@@ -348,12 +350,12 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
 
         {/* only show this footer for the first 2 tabs */}
         {(activeTab === 'account' || activeTab === 'notifications') && (
-          <DialogFooter>
+          <DialogFooter className="flex flex-row justify-end gap-2">
             <NeuButton variant="flat" onClick={onClose}>
               Cancel
             </NeuButton>
-            <NeuButton 
-              variant="primary" 
+            <NeuButton
+              variant="primary"
               onClick={handleUpdateProfile}
               disabled={isUpdating || isUploadingImage || !username.trim() || noChangesMade}
             >

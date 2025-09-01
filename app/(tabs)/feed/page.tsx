@@ -223,7 +223,12 @@ export default function FeedPage() {
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground">Feed</h1>
-            <p className="text-muted-foreground">Discover the latest ideas and suggestions from the community</p>
+            <p className="text-muted-foreground hidden md:block">
+              Discover the latest ideas and suggestions from the community
+            </p>
+            <p className="text-muted-foreground text-sm md:hidden">
+              Discover new ideas from the community
+            </p>
           </div>
           <FeedFilter currentFilter={feedType} onFilterChange={handleFeedTypeChange} />
         </div>
@@ -244,7 +249,12 @@ export default function FeedPage() {
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground">Feed</h1>
-            <p className="text-muted-foreground">Discover the latest ideas and suggestions from the community</p>
+            <p className="text-muted-foreground hidden md:block">
+              Discover the latest ideas and suggestions from the community
+            </p>
+            <p className="text-muted-foreground text-sm md:hidden">
+              Discover new ideas from the community
+            </p>
           </div>
           <FeedFilter currentFilter={feedType} onFilterChange={handleFeedTypeChange} />
         </div>
