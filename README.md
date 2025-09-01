@@ -6,7 +6,7 @@ Live at : [Gotcha](https://gotcha4.vercel.app/)
 
 ## Mission
 
-**I am building something different.** Gotcha isn't about monetization, ads, or data harvesting. It's about fostering genuine collaboration and helping people create useful things together.
+**Open Source & Free .** Gotcha isn't about monetization, ads, or data harvesting. It's about fostering genuine collaboration and helping people create useful things together.
 
 In a world full of commercialized, ad-filled platforms designed to extract value from users, Gotcha stands as an authentic alternative. I believe in the power of open collaboration, where ideas flow freely and people connect around shared creativity rather than engagement metrics.
 
@@ -100,7 +100,6 @@ gotcha-app/
 ├── lib/                  # Utilities and configurations
 ├── providers/            # Context providers
 ├── scripts/              # Database scripts
-└── store/                # Zustand stores
 ```
 
 ## Key Features
