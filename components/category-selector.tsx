@@ -44,7 +44,7 @@ export function CategorySelector({
 
   return (
     <NeuCard 
-          className="w-full max-w-md max-h-[90vh] overflow-y-auto p-4"
+          className="w-full max-h-[90vh] overflow-y-auto p-4"
           onClick={(e) => e.stopPropagation()}
         >
       {/* Selected Categories */}

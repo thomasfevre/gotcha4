@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
       .filter(like => like.annoyance) // Filter out any null annoyances
       .map(like => {
           const annoyance = like.annoyance as any;
-          const profile = annoyance.profiles[0] as { username: string; profile_image_url: string | null } | undefined;
+          const profile = annoyance.profiles as { username: string; profile_image_url: string | null } | undefined;
         return {
             ...annoyance,
             username: profile?.username || "Anonymous",
