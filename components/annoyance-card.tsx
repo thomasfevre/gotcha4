@@ -88,7 +88,7 @@ export function AnnoyanceCard({ annoyance, onLike, onComment, onShare, onEdit, o
       </div>
 
       {/* Content */}
-      <div className="space-y-3 mb-4">
+      <div className="space-y-2 mb-4">
         <h3 className="font-bold text-lg text-foreground leading-tight">{annoyance.title}</h3>
         
         <div className="text-foreground leading-relaxed">
@@ -120,7 +120,7 @@ export function AnnoyanceCard({ annoyance, onLike, onComment, onShare, onEdit, o
             <img
               src={annoyance.image_url || "/placeholder.svg"}
               alt="Annoyance illustration"
-              className="max-w-3xs aspect-square object-contain"
+              className="max-w-3xs md:max-w-[20rem] aspect-square object-contain"
             />
           </div>
         )}
@@ -138,7 +138,7 @@ export function AnnoyanceCard({ annoyance, onLike, onComment, onShare, onEdit, o
 
         {/* External Links */}
         {annoyance.external_links && annoyance.external_links.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-2 mt-2">
             <p className="text-sm font-medium text-muted-foreground">Related Links:</p>
             <div className="flex flex-wrap gap-2">
               {annoyance.external_links.map((link, index) => {

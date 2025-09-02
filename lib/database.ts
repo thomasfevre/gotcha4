@@ -463,4 +463,64 @@ export class DatabaseService {
 
     return data || []
   }
+
+  // Account deletion
+  static async deleteUserAccount(userId: string): Promise<{
+    success: boolean;
+    error?: string;
+    deleted_annoyances?: number;
+    deleted_comments?: number;
+    deleted_likes?: number;
+  }> {
+    const supabase = await this.getClient()
+    
+    try {
+      // Retrieve image URLs before deletion
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("profile_image_url")
+        .eq("id", userId)
+        .single()
+
+      const { data: annoyances } = await supabase
+        .from("annoyances")
+        .select("image_url")
+        .eq("user_id", userId)
+
+      // Delete data via the PostgreSQL function
+      const { data, error } = await supabase
+        .rpc('delete_user_account', {
+          user_id_param: userId
+        })
+
+      if (error) {
+        console.error("Error deleting user account:", error)
+        return {
+          success: false,
+          error: error.message
+        }
+      }
+
+      // Delete images from storage after deleting user data
+      if (profile?.profile_image_url) {
+        await this.deleteProfileImage(userId, profile.profile_image_url)
+      }
+
+      if (annoyances) {
+        for (const annoyance of annoyances) {
+          if (annoyance.image_url) {
+            await this.deleteAnnoyanceImage(annoyance.image_url)
+          }
+        }
+      }
+
+      return data
+    } catch (error) {
+      console.error("Database error in deleteUserAccount:", error)
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }
+    }
+  }
 }
