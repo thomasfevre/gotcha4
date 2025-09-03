@@ -2,7 +2,9 @@
 
 A modern social platform where users can share project ideas and other inspire from it.  
 
-Live at : [Gotcha](https://gotcha4.vercel.app/)
+Live at : https://gotcha4.vercel.app/   
+  
+Demo : https://youtu.be/imHrUvRC-bI
 
 ## Mission
 
