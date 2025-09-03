@@ -57,6 +57,8 @@ export default function TabsLayout({
   useEffect(() => {
     if (ready && !authenticated) {
       router.push("/")
+    } else if (ready && authenticated && !needsUsername) {
+      router.push("/feed")
     } else if (ready && needsUsername) {
       router.push("/username")
     }

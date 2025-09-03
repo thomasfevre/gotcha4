@@ -13,7 +13,9 @@ export default function HomePage() {
   const router = useRouter()
 
   useEffect(() => {
-    if (ready && authenticated && !needsUsername) {
+    if (ready && !authenticated) {
+      router.push("/")
+    } else if (ready && authenticated && !needsUsername) {
       router.push("/feed")
     } else if (ready && needsUsername) {
       router.push("/username")

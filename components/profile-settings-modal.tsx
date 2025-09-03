@@ -182,7 +182,6 @@ export function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalPr
       }
 
       toast({ title: "Account deleted", description: "Your account has been permanently deleted. You will be signed out shortly." })
-      queryClient.clear()
       onClose()
       setTimeout(() => { logout() }, 2000)
     } catch (error) {

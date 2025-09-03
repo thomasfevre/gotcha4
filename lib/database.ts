@@ -464,7 +464,7 @@ export class DatabaseService {
     return data || []
   }
 
-  // Account deletion
+  // Account deletion [not used]
   static async deleteUserAccount(userId: string): Promise<{
     success: boolean;
     error?: string;
@@ -514,7 +514,8 @@ export class DatabaseService {
         }
       }
 
-      return data
+      // Return the data from the function (which now includes counts)
+      return data || { success: true }
     } catch (error) {
       console.error("Database error in deleteUserAccount:", error)
       return {
