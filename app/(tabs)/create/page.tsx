@@ -217,13 +217,20 @@ export default function CreatePage() {
       const token = await getAccessToken()
       if (!token) return // Fail silently for image cleanup
 
+      const requestBody: any = { imageUrl: currentImageUrl }
+      
+      // If we're in edit mode, also pass the annoyance ID to clear the database reference
+      if (isEditMode && editId) {
+        requestBody.annoyanceId = parseInt(editId)
+      }
+
       await fetch("/api/annoyances/image", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ imageUrl: currentImageUrl }),
+        body: JSON.stringify(requestBody),
       })
     } catch (error) {
       console.error("Failed to delete image from storage:", error)

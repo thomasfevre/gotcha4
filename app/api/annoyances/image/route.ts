@@ -61,7 +61,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "Invalid token" }, { status: 401 })
     }
 
-    const { imageUrl } = await request.json()
+    const { imageUrl, annoyanceId } = await request.json()
 
     if (!imageUrl) {
       return NextResponse.json({ error: "No image URL provided" }, { status: 400 })
@@ -72,6 +72,15 @@ export async function DELETE(request: NextRequest) {
     
     if (!deleted) {
       return NextResponse.json({ error: "Failed to delete image" }, { status: 500 })
+    }
+
+    // If annoyanceId is provided, also clear the image_url from the database
+    if (annoyanceId) {
+      const updated = await DatabaseService.clearAnnoyanceImage(userId, annoyanceId)
+      if (!updated) {
+        console.error("Failed to clear image_url from annoyance record")
+        // Don't fail the request since storage deletion succeeded
+      }
     }
 
     return NextResponse.json({ success: true })

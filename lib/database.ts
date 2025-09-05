@@ -190,6 +190,30 @@ export class DatabaseService {
     }
   }
 
+  static async clearAnnoyanceImage(userId: string, annoyanceId: number): Promise<boolean> {
+    const supabase = await this.getClient()
+    
+    try {
+      const { data, error } = await supabase
+        .from("annoyances")
+        .update({ image_url: null })
+        .eq("id", annoyanceId)
+        .eq("user_id", userId) // Ensure user owns the annoyance
+        .select("id")
+        .single()
+
+      if (error) {
+        console.error("Error clearing annoyance image_url:", error)
+        return false
+      }
+
+      return !!data
+    } catch (error) {
+      console.error("Error in clearAnnoyanceImage:", error)
+      return false
+    }
+  }
+
   // Annoyance operations
   static async getAnnoyances(
     limit = 20,
