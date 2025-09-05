@@ -23,7 +23,7 @@ export default function FeedPage() {
   const validFeedTypes: FeedType[] = ['default', 'recent', 'liked']
   const initialFeedType: FeedType = validFeedTypes.includes(urlFeedType as FeedType) 
     ? (urlFeedType as FeedType) 
-    : 'default'
+    : 'recent'
   const [feedType, setFeedType] = useState<FeedType>(initialFeedType)
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useAnnoyances(feedType)
   const likeAnnoyance = useLikeAnnoyance()

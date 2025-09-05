@@ -24,7 +24,7 @@ export default function CreatePage() {
   const searchParams = useSearchParams()
   const editId = searchParams.get('edit')
   const isEditMode = !!editId
-  
+
   const { getAccessToken } = usePrivy()
   const createAnnoyance = useCreateAnnoyance()
   const updateAnnoyance = useUpdateAnnoyance()
@@ -114,9 +114,9 @@ export default function CreatePage() {
           external_links: formData.external_links,
           categories: formData.categories,
         }
-        await updateAnnoyance.mutateAsync({ 
-          annoyanceId: parseInt(editId), 
-          data: updateData 
+        await updateAnnoyance.mutateAsync({
+          annoyanceId: parseInt(editId),
+          data: updateData
         })
         toast({
           title: "Idea updated!",
@@ -184,7 +184,7 @@ export default function CreatePage() {
 
       const result = await response.json()
       setFormData((prev) => ({ ...prev, image_url: result.imageUrl }))
-      
+
       toast({
         title: "Image uploaded!",
         description: "Your image has been uploaded successfully.",
@@ -218,7 +218,7 @@ export default function CreatePage() {
       if (!token) return // Fail silently for image cleanup
 
       const requestBody: any = { imageUrl: currentImageUrl }
-      
+
       // If we're in edit mode, also pass the annoyance ID to clear the database reference
       if (isEditMode && editId) {
         requestBody.annoyanceId = parseInt(editId)
@@ -289,7 +289,7 @@ export default function CreatePage() {
         </p>
       </div>
 
-      <NeuCard className="p-4 sm:p-6 lg:p-8">
+      <NeuCard className={`p-4 sm:p-6 lg:p-8${Object.keys(errors).length > 0 ? " border-2 border-destructive" : ""}`}>
         <form className="space-y-6">
           {/* Title */}
           <div className="space-y-2">
@@ -352,11 +352,11 @@ export default function CreatePage() {
                     <span className="text-sm">Click to add an image</span>
                   </>
                 )}
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  onChange={handleImageUpload} 
-                  className="hidden" 
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
                   disabled={isUploadingImage}
                 />
               </label>
@@ -377,7 +377,7 @@ export default function CreatePage() {
           {/* External Links */}
           <div className="space-y-4 mt-8">
             <Label>External Links (Optional)</Label>
-            
+
             {/* Existing Links */}
             {formData.external_links && formData.external_links.length > 0 && (
               <div className="space-y-2">
@@ -404,10 +404,9 @@ export default function CreatePage() {
             )}
 
             {/* Add New Link */}
-            <div className={`space-y-3 p-4 rounded-lg transition-all duration-200 ${
-              newLink.type && newLink.url ? 'neu-inset border-2 border-primary/30' : 'neu-inset'
-            }`}>
-              
+            <div className={`space-y-3 p-4 rounded-lg transition-all duration-200 ${newLink.type && newLink.url ? 'neu-inset border-2 border-primary/30' : 'neu-inset'
+              }`}>
+
               <div className="grid grid-cols-1 gap-3">
                 <div className="flex items-center justify-center">
                   {/* <Label htmlFor="linkType" className="text-xs px-5">Type :</Label> */}
@@ -470,7 +469,7 @@ export default function CreatePage() {
               {errors.externalLink && (
                 <p className="text-sm text-destructive">{errors.externalLink}</p>
               )}
-              
+
               {/* Helper text */}
               {!newLink.type && !newLink.url && (
                 <p className="text-xs text-muted-foreground px-4">
@@ -479,6 +478,10 @@ export default function CreatePage() {
               )}
             </div>
           </div>
+
+          {errors.title && <p className="text-sm text-destructive">{errors.title}</p>}
+          {errors.description && <p className="text-sm text-destructive">{errors.description}</p>}
+          {errors.image && <p className="text-sm text-destructive">{errors.image}</p>}
 
           {/* Submit */}
           <div className="flex gap-3 pt-4">

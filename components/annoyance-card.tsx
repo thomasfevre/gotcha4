@@ -114,7 +114,7 @@ export function AnnoyanceCard({ annoyance, onLike, onComment, onShare, onEdit, o
         {/* Image */}
         {annoyance.image_url && (
           <div 
-            className="neu-inset rounded-lg overflow-hidden cursor-pointer hover:neu-flat transition-all duration-200"
+            className="max-w-3xs neu-inset rounded-lg overflow-hidden cursor-pointer hover:neu-flat transition-all duration-200"
             onClick={() => setImageModalOpen(true)}
           >
             <img

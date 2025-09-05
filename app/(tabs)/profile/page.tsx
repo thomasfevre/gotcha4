@@ -21,7 +21,7 @@ import type { Annoyance } from "@/lib/schemas"
 export default function ProfilePage() {
   const router = useRouter()
   const { userProfile, logout, connectionMethod } = useAuth()
-  const { data, isLoading } = useAnnoyances('default')
+  const { data, isLoading } = useAnnoyances('recent')
   const likeAnnoyance = useLikeAnnoyance()
   const deleteAnnoyance = useDeleteAnnoyance()
   const [commentModalOpen, setCommentModalOpen] = useState(false)
